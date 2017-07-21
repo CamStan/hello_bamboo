@@ -2,11 +2,7 @@
 #MSUB -l nodes=2
 #MSUB -N mpiH
 #MSUB -l walltime=5:00
-#MSUB -q pbatch 
+#MSUB -q pdebug 
 #MSUB -o output-moab.mpiH
 
-if ( -f mpi_hello_world) then
-	srun -n16 mpi_hello_world
-else
-	echo 'mpi_hello_world not found'
-endif
+srun -n16 mpi_hello_world
