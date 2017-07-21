@@ -33,6 +33,8 @@ then
 	echo "printing output"
 	cat output-moab.mpiH
 
+	exit $?
 else
 	echo 'mpi_hello_world not found'
+	exit 1
 fi
