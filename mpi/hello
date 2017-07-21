@@ -1,0 +1,38 @@
+#!/bin/bash
+
+echo "building"
+make
+echo "build complete"
+
+if [ -e mpi_hello_world ] 
+then
+
+	echo "submitting job"
+  jobid0=$(msub -q pdebug moabHello | tr -d '\n')
+  
+	jobinfo0=$(mdiag -j $jobid0)
+	status0=$(echo $jobinfo0 | awk '{print $13}')
+
+	echo "job running"
+
+	while [ $status0 != "CG" ] && [ $status0 != "CD" ]
+	do
+		jobinfo0=$(mdiag -j $jobid0)
+		status0=$(echo $jobinfo0 | awk '{print $13}')
+	done
+
+	echo "job complete"
+
+	echo "waiting for output file..."
+
+	while [ ! -e output-moab.mpiH ]
+	do
+		sleep 1
+	done
+
+	echo "printing output"
+	cat output-moab.mpiH
+
+else
+	echo 'mpi_hello_world not found'
+fi
