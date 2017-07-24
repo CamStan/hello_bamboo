@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# simple test to check if the output file contains 16 lines
+# make test fail on first attempt to check if Bamboo catches it
+
+if [ -e output-moab.mpiH ]
+then
+
+	lines=$(cat output-moab.mpiH | wc -l)
+
+	if [ $lines == 15 ]
+	then
+		echo "Line count is correct"
+		exit $?
+	else
+		echo "Line count is incorrect"
+		exit 2
+	fi
+
+else
+	echo "output-moab-mpiH not found. Run hello script to generate output."
+	exit 1
+fi
