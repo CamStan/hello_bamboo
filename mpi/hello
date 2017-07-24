@@ -4,17 +4,21 @@ echo "building"
 make
 echo "build complete"
 
+# check if the mpi_hello_world binary was created by make
 if [ -e mpi_hello_world ] 
 then
 
+	# submit the job using that binary via a batch script and collect the jobID
 	echo "submitting job"
   jobid0=$(msub -q pdebug moabHello | tr -d '\n')
   
+	# collect the job status
 	jobinfo0=$(mdiag -j $jobid0)
 	status0=$(echo $jobinfo0 | awk '{print $13}')
 
 	echo "job running"
 
+	# continually check the job status until the job has completed
 	while [ $status0 != "CG" ] && [ $status0 != "CD" ]
 	do
 		jobinfo0=$(mdiag -j $jobid0)
@@ -25,6 +29,7 @@ then
 
 	echo "waiting for output file..."
 
+	# wait for the output file to be created
 	while [ ! -e output-moab.mpiH ]
 	do
 		sleep 1
@@ -34,7 +39,7 @@ then
 	cat output-moab.mpiH
 
 	exit $?
-else
+else # binary not found. exit with error
 	echo 'mpi_hello_world not found'
 	exit 1
 fi

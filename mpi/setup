@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# if mpi_hello_world binary file exists, remove it
+if [ -e mpi_hello_world ]
+then
+	rm mpi_hello_world
+fi
+
+# if output-moab.mpiH file exists, remove it
+if [ -e output-moab.mpiH ]
+then
+	rm output-moab.mpiH
+fi
