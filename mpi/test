@@ -8,6 +8,7 @@ then
 
 	lines=$(cat output-moab.mpiH | wc -l)
 
+# check if output file contains the correct number of lines
 # if not correct, exit wity nonzero to tell Bamboo to fail
 	if [ $lines == 16 ]
 	then
