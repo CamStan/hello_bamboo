@@ -18,7 +18,7 @@ then
 		exit 2
 	fi
 
-# output file not found
+# output file not found, exit with nonzero status
 else
 	echo "output-moab-mpiH not found. Run hello script to generate output."
 	exit 1
