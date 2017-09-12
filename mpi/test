@@ -8,7 +8,8 @@ then
 
 	lines=$(cat output-moab.mpiH | wc -l)
 
-	if [ $lines == 155555 ]
+# check if line count is correct
+	if [ $lines == 16 ]
 	then
 		echo "Test passed. Line count is correct"
 		exit $?
