@@ -8,6 +8,7 @@ then
 
 	lines=$(cat output-moab.mpiH | wc -l)
 
+# different comment to see how Bamboo handles merge conflict with auto push feature
 # if not correct, exit wity nonzero to tell Bamboo to fail
 	if [ $lines == 16 ]
 	then
