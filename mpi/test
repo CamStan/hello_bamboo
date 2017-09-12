@@ -13,7 +13,7 @@ then
 	then
 		echo "Test passed. Line count is correct"
 		exit $?
-	else
+	else # line count not correct
 		echo "Test failed. Line count is incorrect"
 		exit 2
 	fi
